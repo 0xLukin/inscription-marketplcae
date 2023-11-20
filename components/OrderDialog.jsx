@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -11,17 +12,23 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select"
 
 const OrderDialog = () => {
-  const [tick, setTick] = useState("")
+  const [tick, setTick] = useState("pols")
   const [tickAmount, setTickAmount] = useState("")
   const [askAmount, setAskAmount] = useState("")
-  const tickRef = useRef()
   const tickAmountRef = useRef()
   const askAmountRef = useRef()
 
   const onSubmit = (data) => {
-    console.log(tickRef.current.value, "tick")
+    console.log(tick, "tick")
     console.log(tickAmountRef.current.value, "tickAmount")
     console.log(askAmountRef.current.value, "askAmount")
   }
@@ -38,11 +45,14 @@ const OrderDialog = () => {
         <div className="flex flex-col gap-4 py-4">
           <div>
             <Label htmlFor="tick">Tick</Label>
-            <Input
-              ref={tickRef}
-              value={tick}
-              onChange={(e) => setTick(e.target.value)}
-            />
+            <Select value={tick} onChange={(e) => setTick(e.target.value)}>
+              <SelectTrigger>
+                <SelectValue placeholder="Theme" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="pols">POLS</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div>
             <Label htmlFor="tickAmount">Tick Amount</Label>
@@ -62,7 +72,11 @@ const OrderDialog = () => {
           </div>
         </div>
         <DialogFooter className="flex flex-row justify-between">
-          <Button variant="outline">Cancel</Button>
+          <DialogClose asChild>
+            <Button type="button" variant="secondary">
+              Close
+            </Button>
+          </DialogClose>
           <Button onClick={onSubmit} type="submit">
             Publish
           </Button>
