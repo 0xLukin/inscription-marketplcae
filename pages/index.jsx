@@ -2,6 +2,8 @@ import OrderCard from "@/components/OrderCard"
 import OrderDialog from "@/components/OrderDialog"
 import { Button } from "@/components/ui/button"
 import useCheckNetwork from "@/hooks/useCheckNetwork"
+import Screen from "@/components/Screen"
+import Search from "@/components/Search"
 
 const Home = () => {
   const { error } = useCheckNetwork()
@@ -11,9 +13,15 @@ const Home = () => {
         <div className="font-bold text-3xl">Explore Inscriptions</div>
         <OrderDialog />
       </div>
+      <div
+        title="screen"
+        className=" flex items-center justify-between mx-10 pt-10"
+      >
+        <Screen />
 
-      <div className="grid grid-cols-3 gap-8">
-        <OrderCard />
+        <Search />
+      </div>
+      <div className="flex flex-row gap-8 mx-10 pt-10 ">
         <OrderCard />
         <OrderCard />
         <OrderCard />
