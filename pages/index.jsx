@@ -18,8 +18,9 @@ const Home = () => {
         className="flex items-center justify-between mx-10 py-10"
       >
         <Screen />
-
-        <Search />
+        <div className=" hidden">
+          <Search />
+        </div>
       </div>
       <div className="grid grid-cols-3 gap-8 mx-10">
         <OrderCard />
