@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-function useFetchInfo(url) {
+function useGetOrders(url) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -27,4 +27,4 @@ function useFetchInfo(url) {
   return { data, loading, error }
 }
 
-export default useFetchInfo
+export default useGetOrders

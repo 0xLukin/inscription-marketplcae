@@ -1,10 +1,10 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import useFetchInfo from "@/hooks/fetch/useFetchInfo"
+import useGetOrders from "@/hooks/fetch/useGetOrders"
 
 export default function Search() {
-  const { data, loading, error } = useFetchInfo("https://example.com/api/data")
+  const { data, loading, error } = useGetOrders("https://example.com/api/data")
   return (
     <div className="flex w-full max-w-sm items-center relative">
       <Input
