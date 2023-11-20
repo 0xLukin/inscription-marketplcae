@@ -19,6 +19,7 @@ const OrderCard = () => {
     <Card className="relative">
       {loading && (
         <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-10">
+          <div className="text-white">交易进行中</div>
           <Loader2 className="text-white animate-spin h-8 w-8" />
         </div>
       )}
