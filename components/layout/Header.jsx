@@ -95,10 +95,8 @@ const Header = () => {
           className="flex flex-row sm:gap-2 items-center justify-center"
         >
           {/* <Image src="/ratswaplogo.png" alt="Logo" width={64} height={64} /> */}
-          <h1>LOGO</h1>
-          <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#e3bb5f] to-[#ddaa41]">
-            Insc.wdf
-          </div>
+          <div>LOGO</div>
+          <div className="text-2xl font-bold">Insc.wtf</div>
         </Link>
       </div>
 
@@ -166,22 +164,22 @@ const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <div title="nav" className="  gap-x-10 hidden sm:flex sm:flex-row">
-        <Link href="/" className={buttonClass("/")}>
+      <div title="nav" className="gap-x-10 hidden sm:flex sm:flex-row">
+        <Link href="/">
           <button className="flex flex-row gap-1">
             <HomeIcon className="h-6 w-6" />
             <div>Home</div>
           </button>
         </Link>
 
-        <Link href="/" className={buttonClass("/inscribe")}>
+        <Link href="/">
           <button disabled className="flex flex-row gap-1">
             <Pencil1Icon className="h-6 w-6" />
             <div>Inscribe</div>
           </button>
         </Link>
 
-        <Link href="/" className={buttonClass("/market")}>
+        <Link href="/">
           <button disabled className="flex flex-row gap-2">
             <BackpackIcon className="h-6 w-6" />
             <div>MarketPlace</div>
@@ -193,8 +191,6 @@ const Header = () => {
         className=" flex-row justify-end items-center space-x-4 text-muted-foreground hidden sm:flex"
       >
         <button
-          className="btn bg-white hover:bg-[#31271a] text-[#e3bb5f] hover:text-[#ddaa41]"
-          size="icon"
           onClick={() =>
             window.open("https://twitter.com/ratswaporg", "_blank")
           }
@@ -202,13 +198,11 @@ const Header = () => {
           <TwitterLogoIcon className="h-6 w-6" />
         </button>
         <button
-          className="btn bg-white hover:bg-[#31271a] text-[#e3bb5f] hover:text-[#ddaa41] hidden sm:flex"
-          size="icon"
-          // onClick={() => window.open("https://discord.gg", "_blank")}
+        // onClick={() => window.open("https://discord.gg", "_blank")}
         >
           <DiscordLogoIcon className="h-6 w-6" />
         </button>
-        <div className=" hidden sm:flex">
+        <div className="hidden sm:flex">
           <ConnectWalletButton />
         </div>
       </div>
