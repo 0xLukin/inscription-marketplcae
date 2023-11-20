@@ -9,13 +9,13 @@ const Home = () => {
   const { error } = useCheckNetwork()
   return (
     <div className="px-8 mt-10">
-      <div className="flex flex-row justify-between mb-10">
+      <div className="flex flex-row justify-between mx-10 mb-10">
         <div className="font-bold text-3xl">Explore Inscriptions</div>
         <OrderDialog />
       </div>
       <div
         title="screen"
-        className=" flex items-center justify-between mx-10 pt-10"
+        className="flex items-center justify-between mx-10 pt-10"
       >
         <Screen />
 
