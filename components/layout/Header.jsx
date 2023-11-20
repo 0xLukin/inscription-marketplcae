@@ -113,9 +113,9 @@ const Header = () => {
         </button>
         <button ref={navIconRef} onClick={toggleMenu}>
           {isMenuOpen ? (
-            <Cross1Icon className="h-8 w-8 text-white" />
+            <Cross1Icon className="h-8 w-8 text-black" />
           ) : (
-            <HamburgerMenuIcon className="h-8 w-8 text-white" />
+            <HamburgerMenuIcon className="h-8 w-8 text-black" />
           )}
         </button>
       </div>
