@@ -1,5 +1,4 @@
-import React from "react"
-import { useForm } from "react-hook-form"
+import React, { useRef, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -12,17 +11,19 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Loader2 } from "lucide-react"
 
 const OrderDialog = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm()
+  const [tick, setTick] = useState("")
+  const [tickAmount, setTickAmount] = useState("")
+  const [askAmount, setAskAmount] = useState("")
+  const tickRef = useRef()
+  const tickAmountRef = useRef()
+  const askAmountRef = useRef()
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(tickRef.current.value, "tick")
+    console.log(tickAmountRef.current.value, "tickAmount")
+    console.log(askAmountRef.current.value, "askAmount")
   }
 
   return (
@@ -30,40 +31,41 @@ const OrderDialog = () => {
       <DialogTrigger asChild>
         <Button>PUBLISH SELL ORDER</Button>
       </DialogTrigger>
-      <DialogContent
-        as="form"
-        onSubmit={handleSubmit(onSubmit)}
-        className="sm:max-w-[425px]"
-      >
+      <DialogContent as="form" className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Publish Sell Order</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-4 py-4">
           <div>
             <Label htmlFor="tick">Tick</Label>
-            <Input {...register("tick", { required: "Tick is required" })} />
-            {errors.tick && <p>{errors.tick.message}</p>}
+            <Input
+              ref={tickRef}
+              value={tick}
+              onChange={(e) => setTick(e.target.value)}
+            />
           </div>
           <div>
             <Label htmlFor="tickAmount">Tick Amount</Label>
             <Input
-              {...register("tickAmount", {
-                required: "Tick Amount is required"
-              })}
+              ref={tickAmountRef}
+              value={tickAmount}
+              onChange={(e) => setTickAmount(e.target.value)}
             />
-            {errors.tickAmount && <p>{errors.tickAmount.message}</p>}
           </div>
           <div>
             <Label htmlFor="askAmount">Ask Amount</Label>
             <Input
-              {...register("askAmount", { required: "Ask Amount is required" })}
+              ref={askAmountRef}
+              value={askAmount}
+              onChange={(e) => setAskAmount(e.target.value)}
             />
-            {errors.askAmount && <p>{errors.askAmount.message}</p>}
           </div>
         </div>
         <DialogFooter className="flex flex-row justify-between">
           <Button variant="outline">Cancel</Button>
-          <Button type="submit">Publish</Button>
+          <Button onClick={onSubmit} type="submit">
+            Publish
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
