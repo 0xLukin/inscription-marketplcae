@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import Image from "next/image"
+
+import { Loader2 } from "lucide-react"
 
 import {
   Card,
@@ -11,8 +13,15 @@ import {
 import { Button } from "@/components/ui/button"
 
 const OrderCard = () => {
+  const [loading, setLoading] = useState(true)
+
   return (
-    <Card>
+    <Card className="relative">
+      {loading && (
+        <div className="absolute inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-10">
+          <Loader2 className="text-white animate-spin h-8 w-8" />
+        </div>
+      )}
       <CardHeader>
         <div className="flex flex-row justify-between">
           <CardTitle className="flex flex-row items-center gap-2">
@@ -38,6 +47,7 @@ const OrderCard = () => {
           </div>
           <div>
             <Button>购买</Button>
+            {/* <Button>撤单</Button> */}
           </div>
         </div>
       </CardContent>
