@@ -206,7 +206,6 @@ const Header = () => {
         <div className="hidden sm:flex">
           <ConnectWalletButton />
         </div>
-        <RainbowConnect />
       </div>
     </div>
   )

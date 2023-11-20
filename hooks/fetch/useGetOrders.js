@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react"
+import { useApiClient } from "../apiClient"
 
 function useGetOrders(url) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  const { apiClient } = useApiClient()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url)
+        const response = await apiClient(url)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
