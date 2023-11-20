@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button"
 
 const OrderCard = () => {
   return (
-    <Card className="w-1/3">
+    <Card>
       <CardHeader>
         <div className="flex flex-row justify-between">
           <CardTitle className="flex flex-row items-center gap-2">
