@@ -16,6 +16,7 @@ import {
 } from "@radix-ui/react-icons"
 import ConnectWalletButton from "@/components/button/ConnectWalletButton"
 import { motion, AnimatePresence } from "framer-motion"
+import RainbowConnect from "../RainbowConnect"
 
 const navVariants = {
   open: {
@@ -205,6 +206,7 @@ const Header = () => {
         <div className="hidden sm:flex">
           <ConnectWalletButton />
         </div>
+        <RainbowConnect />
       </div>
     </div>
   )
