@@ -21,7 +21,7 @@ const Home = () => {
 
         <Search />
       </div>
-      <div className="flex flex-row gap-8 mx-10 pt-10 ">
+      <div className="grid grid-cols-3 gap-8">
         <OrderCard />
         <OrderCard />
         <OrderCard />
