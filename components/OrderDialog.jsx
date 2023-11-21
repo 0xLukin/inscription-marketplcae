@@ -20,6 +20,8 @@ import {
   SelectValue
 } from "@/components/ui/select"
 
+import useCreateOrUpdateOrder from "@/hooks/fetch/useCreateOrUpdateOrder"
+
 const OrderDialog = () => {
   const [tick, setTick] = useState("pols")
   const [tickAmount, setTickAmount] = useState("")
@@ -27,10 +29,24 @@ const OrderDialog = () => {
   const tickAmountRef = useRef()
   const askAmountRef = useRef()
 
-  const onSubmit = (data) => {
+  const { createOrUpdateOrder, response, loading, error } =
+    useCreateOrUpdateOrder()
+
+  const onSubmit = async (data) => {
     console.log(tick, "tick")
     console.log(tickAmountRef.current.value, "tickAmount")
     console.log(askAmountRef.current.value, "askAmount")
+    const orderData = {
+      userAddress: "0x123",
+      networkId: 1,
+      tick: tick,
+      tickAmount: tickAmountRef.current.value,
+      askAmount: askAmountRef.current.value
+    }
+    console.log(orderData, "orderData")
+    await createOrUpdateOrder(orderData)
+    console.log(response)
+    console.log(error)
   }
 
   return (
