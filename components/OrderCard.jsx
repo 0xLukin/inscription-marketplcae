@@ -11,6 +11,8 @@ import {
   CardTitle
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import useBuyOrder from "@/hooks/fetch/useBuyOrder"
+import { useAccount } from "wagmi"
 
 const OrderCard = ({
   id,
@@ -23,8 +25,13 @@ const OrderCard = ({
 }) => {
   const [loading, setLoading] = useState(true)
 
-  const handlePurchaseClick = (orderId) => {
+  const { address } = useAccount()
+
+  const { buyOrder, response, loading: buyingLoading, error } = useBuyOrder()
+
+  const handlePurchaseClick = async (orderId) => {
     console.log("Purchasing order with id:", orderId)
+    // await buyOrder(orderId, buyerAddress)
   }
 
   return (
@@ -61,7 +68,12 @@ const OrderCard = ({
             <div>${askAmount ? askAmount : 0}</div>
           </div>
           <div>
-            <Button onClick={() => handlePurchaseClick(id)}>购买</Button>
+            <Button
+              onClick={() => handlePurchaseClick(id)}
+              disabled={buyingLoading}
+            >
+              购买
+            </Button>
             {/* <Button>撤单</Button> */}
           </div>
         </div>
