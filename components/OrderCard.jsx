@@ -12,8 +12,20 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
-const OrderCard = () => {
+const OrderCard = ({
+  id,
+  status,
+  userAddress,
+  networkId,
+  tick,
+  tickAmount,
+  askAmount
+}) => {
   const [loading, setLoading] = useState(true)
+
+  const handlePurchaseClick = (orderId) => {
+    console.log("Purchasing order with id:", orderId)
+  }
 
   return (
     <Card className="relative">
@@ -27,6 +39,7 @@ const OrderCard = () => {
         <div className="flex flex-row justify-between">
           <CardTitle className="flex flex-row items-center gap-2">
             <div>
+              {networkId}
               <Image
                 src="/polygon_logo.svg"
                 alt="Logo"
@@ -34,28 +47,28 @@ const OrderCard = () => {
                 height={32}
               />
             </div>
-
-            <div>ETH #2,562,055</div>
+            <div>
+              {tick} - {tickAmount}
+            </div>
           </CardTitle>
-          <div>$单价0.0002</div>
+          <div>{askAmount}</div>
         </div>
       </CardHeader>
       <CardContent>
         <div className="flex flex-row justify-between">
           <div>
             <div>总价</div>
-            <div>0.002($7160)</div>
+            <div>${askAmount ? askAmount : 0}</div>
           </div>
           <div>
-            <Button>购买</Button>
+            <Button onClick={() => handlePurchaseClick(id)}>购买</Button>
             {/* <Button>撤单</Button> */}
           </div>
         </div>
       </CardContent>
       <CardFooter>
         <div className="flex flex-row gap-2">
-          <div>avator</div>
-          <div>0x1a43....bbc5e3d9</div>
+          <div>{userAddress}</div>
         </div>
       </CardFooter>
     </Card>

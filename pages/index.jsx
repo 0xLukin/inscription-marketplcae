@@ -4,9 +4,16 @@ import { Button } from "@/components/ui/button"
 import useCheckNetwork from "@/hooks/useCheckNetwork"
 import Screen from "@/components/Screen"
 import Search from "@/components/Search"
+import useGetOrders from "@/hooks/fetch/useGetOrders"
 
 const Home = () => {
   const { error } = useCheckNetwork()
+
+  const { data, loading, error: gerOrderError } = useGetOrders()
+
+  // if (loading) return <div>Loading...</div>
+  // if (gerOrderError) return <div>Error: {gerOrderError.message}</div>
+
   return (
     <div className="px-8 mt-10">
       <div className="flex flex-row justify-between mx-10 mb-10">
@@ -24,9 +31,18 @@ const Home = () => {
       </div>
       <div className="grid grid-cols-3 gap-8 mx-10">
         <OrderCard />
-        <OrderCard />
-        <OrderCard />
-        <OrderCard />
+        {data?.map((order, index) => (
+          <OrderCard
+            key={index}
+            id={order.id}
+            status={order.status}
+            userAddress={order.userAddress}
+            networkId={order.networkId}
+            tick={order.tick}
+            tickAmount={order.tickAmount}
+            askAmount={order.askAmount}
+          />
+        ))}
       </div>
     </div>
   )

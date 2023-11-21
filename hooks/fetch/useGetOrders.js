@@ -11,7 +11,7 @@ function useGetOrders(url) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiClient(url)
+        const response = await apiClient(`/api/orders`)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
