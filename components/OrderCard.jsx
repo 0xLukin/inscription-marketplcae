@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button"
 import useBuyOrder from "@/hooks/fetch/useBuyOrder"
 import { useAccount } from "wagmi"
+import { useToast } from "@/components/ui/use-toast"
 
 const OrderCard = ({
   id,
@@ -29,8 +30,15 @@ const OrderCard = ({
 
   const { buyOrder, response, loading: buyingLoading, error } = useBuyOrder()
 
+  const { toast } = useToast()
+
   const handlePurchaseClick = async (orderId) => {
     console.log("Purchasing order with id:", orderId)
+    // success or error
+    toast({
+      title: "Scheduled: Catch up",
+      description: "Friday, February 10, 2023 at 5:57 PM"
+    })
     // await buyOrder(orderId, buyerAddress)
   }
 
@@ -58,7 +66,7 @@ const OrderCard = ({
               {tick} - {tickAmount}
             </div>
           </CardTitle>
-          <div>{askAmount}</div>
+          <div>{askAmount ? askAmount : 0}'matic'</div>
         </div>
       </CardHeader>
       <CardContent>
