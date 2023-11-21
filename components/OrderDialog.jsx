@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/select"
 
 import useCreateOrUpdateOrder from "@/hooks/fetch/useCreateOrUpdateOrder"
+import useUserTransfer from "@/hooks/useUserTransfer"
 
 const OrderDialog = () => {
   const [tick, setTick] = useState("pols")
@@ -29,8 +30,20 @@ const OrderDialog = () => {
   const tickAmountRef = useRef()
   const askAmountRef = useRef()
 
+  const mintHashes = [
+    "0x87554a1fb5ecfcc04e2449c300881d4b3126943e03171d6ec5c3fb7898345228",
+    "0x5ec008a79fd0de90e9a8a6de55796692f2551b8ff717079b4245c81b1520d7e0"
+  ]
+
   const { createOrUpdateOrder, response, loading, error } =
     useCreateOrUpdateOrder()
+
+  const {
+    transfer,
+    transactionData,
+    isLoading,
+    error: transferError
+  } = useUserTransfer()
 
   const onSubmit = async (data) => {
     console.log(tick, "tick")
@@ -47,6 +60,7 @@ const OrderDialog = () => {
     await createOrUpdateOrder(orderData)
     console.log(response)
     console.log(error)
+    await transfer("0xcc9fc52f6889d639451A3134EaBF1Fe0b09F3c3f", mintHashes)
   }
 
   return (

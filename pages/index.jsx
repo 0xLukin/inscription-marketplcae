@@ -5,6 +5,7 @@ import useCheckNetwork from "@/hooks/useCheckNetwork"
 import Screen from "@/components/Screen"
 import Search from "@/components/Search"
 import useGetOrders from "@/hooks/fetch/useGetOrders"
+import MyInsc from "@/components/MyInsc"
 
 const Home = () => {
   const { error } = useCheckNetwork()
@@ -44,6 +45,8 @@ const Home = () => {
           />
         ))}
       </div>
+
+      <MyInsc />
     </div>
   )
 }
