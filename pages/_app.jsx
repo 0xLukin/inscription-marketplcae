@@ -5,6 +5,7 @@ import Headers from "@/components/layout/Header"
 import { WalletProvider } from "@/contexts/WalletContext"
 import { WebhookProvider } from "@/contexts/WebhookContext"
 import { AuthenticationProvider } from "@/contexts/AuthenticationContext"
+import { Toaster } from "@/components/ui/toaster"
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -14,6 +15,7 @@ function MyApp({ Component, pageProps }) {
           <WebhookProvider>
             <Headers />
             <Component {...pageProps} />
+            <Toaster />
           </WebhookProvider>
         </WalletProvider>
       </AuthenticationProvider>
