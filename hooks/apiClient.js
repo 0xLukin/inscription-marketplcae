@@ -55,15 +55,18 @@ export const useApiClient = () => {
     }
 
     try {
-      const response = await fetch(endpoint, {
-        ...options,
-        headers: {
-          ...options.headers,
-          Authorization: `Bearer ${
-            newAccessToken ? newAccessToken : accessToken
-          }`
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_HOST}${endpoint}`,
+        {
+          ...options,
+          headers: {
+            ...options.headers,
+            Authorization: `Bearer ${
+              newAccessToken ? newAccessToken : accessToken
+            }`
+          }
         }
-      })
+      )
 
       if (!response.ok) {
         const errorData = await response.json()
