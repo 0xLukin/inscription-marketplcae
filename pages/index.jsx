@@ -31,12 +31,11 @@ const Home = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-8 mx-10">
-        <OrderCard />
         {data?.map((order, index) => (
           <OrderCard
             key={index}
             id={order.id}
-            status={order.status}
+            status={order?.buyerAddress ? true : false}
             userAddress={order.userAddress}
             networkId={order.networkId}
             tick={order.tick}

@@ -12,13 +12,12 @@ export const useApiClient = () => {
 
   const refreshTokenAndGetNewAccessToken = async () => {
     if (!isRefreshTokenValid) {
-      //@ts-ignore
       clearCredentials()
       return null
     }
 
     try {
-      const response = await fetch("/api/v1/refreshToken", {
+      const response = await fetch("/api/refreshToken", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -27,25 +26,21 @@ export const useApiClient = () => {
       })
 
       if (!response.ok) {
-        //@ts-ignore
         clearCredentials()
         return null
       }
 
       const data = await response.json()
-      //@ts-ignore
       setTokens(data.tokens)
       return data.tokens.access.token
     } catch (error) {
       console.error("Error refreshing token:", error)
-      //@ts-ignore
       clearCredentials()
       return null
     }
   }
 
   const apiClient = async (endpoint, options = {}, newAccessToken) => {
-    //@ts-ignore
     if (!isAccessTokenValid() && !newAccessToken) {
       const newAccessToken = await refreshTokenAndGetNewAccessToken()
       if (!newAccessToken) {
@@ -55,18 +50,15 @@ export const useApiClient = () => {
     }
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}${endpoint}`,
-        {
-          ...options,
-          headers: {
-            ...options.headers,
-            Authorization: `Bearer ${
-              newAccessToken ? newAccessToken : accessToken
-            }`
-          }
+      const response = await fetch(endpoint, {
+        ...options,
+        headers: {
+          ...options.headers,
+          Authorization: `Bearer ${
+            newAccessToken ? newAccessToken : accessToken
+          }`
         }
-      )
+      })
 
       if (!response.ok) {
         const errorData = await response.json()
