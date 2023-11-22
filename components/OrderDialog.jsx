@@ -22,6 +22,7 @@ import {
 
 import useCreateOrUpdateOrder from "@/hooks/fetch/useCreateOrUpdateOrder"
 import useUserTransfer from "@/hooks/useUserTransfer"
+import { useAccount } from "wagmi"
 
 const OrderDialog = () => {
   const [tick, setTick] = useState("pols")
@@ -29,6 +30,8 @@ const OrderDialog = () => {
   const [askAmount, setAskAmount] = useState("")
   const tickAmountRef = useRef()
   const askAmountRef = useRef()
+
+  const { address } = useAccount()
 
   const mintHashes = [
     "0x87554a1fb5ecfcc04e2449c300881d4b3126943e03171d6ec5c3fb7898345228",
@@ -50,11 +53,12 @@ const OrderDialog = () => {
     console.log(tickAmountRef.current.value, "tickAmount")
     console.log(askAmountRef.current.value, "askAmount")
     const orderData = {
-      userAddress: "0x123",
+      userAddress: address,
       networkId: 1,
       tick: tick,
       tickAmount: tickAmountRef.current.value,
-      askAmount: askAmountRef.current.value
+      askAmount: askAmountRef.current.value,
+      mintTxHashes: mintHashes
     }
     console.log(orderData, "orderData")
     await createOrUpdateOrder(orderData)

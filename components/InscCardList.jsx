@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import InscCard from "./InscCard" // 确保路径正确
+import InscCard from "./InscCard"
 
 function InscCardList({ inscCards }) {
   const [selected, setSelected] = useState({})

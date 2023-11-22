@@ -12,11 +12,14 @@ function useCreateOrUpdateOrder() {
     async (orderData) => {
       setLoading(true)
       try {
-        const response = await apiClient("/api/orders", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(orderData)
-        })
+        const response = await apiClient(
+          `${process.env.NEXT_PUBLIC_HOST}/api/orders`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(orderData)
+          }
+        )
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)

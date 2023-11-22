@@ -1,22 +1,22 @@
 import { useState } from "react"
 import { useApiClient } from "../apiClient"
 
-function useBuyOrder() {
+function useDeleteOrder() {
   const [response, setResponse] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const { apiClient } = useApiClient()
 
-  const buyOrder = async (orderId, buyerAddress) => {
+  const deleteOrder = async (orderId, deleteAddress) => {
     setLoading(true)
     try {
       const response = await apiClient(
-        `${process.env.NEXT_PUBLIC_HOST}/api/buyOrders/${orderId}`,
+        `${process.env.NEXT_PUBLIC_HOST}/api/orders/${orderId}`,
         {
-          method: "POST",
+          method: "DELETE",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ buyerAddress })
+          body: JSON.stringify({ deleteAddress })
         }
       )
 
@@ -32,7 +32,7 @@ function useBuyOrder() {
     }
   }
 
-  return { buyOrder, response, loading, error }
+  return { deleteOrder, response, loading, error }
 }
 
-export default useBuyOrder
+export default useDeleteOrder
