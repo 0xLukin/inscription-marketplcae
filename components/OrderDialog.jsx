@@ -56,8 +56,8 @@ const OrderDialog = () => {
       userAddress: address,
       networkId: 1,
       tick: tick,
-      tickAmount: tickAmountRef.current.value,
-      askAmount: askAmountRef.current.value,
+      tickAmount: String(Number(tickAmountRef.current.value) * 10 ** 18),
+      askAmount: String(Number(askAmountRef.current.value) * 10 ** 18),
       mintTxHashes: mintHashes
     }
     console.log(orderData, "orderData")

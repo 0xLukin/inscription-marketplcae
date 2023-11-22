@@ -11,7 +11,7 @@ const Home = () => {
   const { error } = useCheckNetwork()
 
   const { data, loading, error: gerOrderError } = useGetOrders()
-
+  console.log(data)
   // if (loading) return <div>Loading...</div>
   // if (gerOrderError) return <div>Error: {gerOrderError.message}</div>
 

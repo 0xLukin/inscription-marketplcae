@@ -58,6 +58,7 @@ const OrderCard = ({
     }
     return address
   }
+  console.log(askAmount, "askAmount")
 
   return (
     <Card className="relative">
@@ -79,7 +80,7 @@ const OrderCard = ({
               />
             </div>
             <div>
-              {tick} - {tickAmount}
+              {tick} - {tickAmount ? formatUnits(tickAmount, "ether") : "0.00"}
             </div>
           </CardTitle>
           {/* askAmount / tickamount */}
@@ -94,11 +95,17 @@ const OrderCard = ({
             <div>总价</div>
             {/* todo askAmount transfer 000000000 18 */}
             <div className="flex flex-col">
-              <div className="font-bold">${askAmount ? askAmount : 0} USD</div>
+              <div className="font-bold">
+                $
+                {askAmount
+                  ? formatUnits(askAmount || 0 * tickAmount, "ether")
+                  : "0.00"}{" "}
+                USD
+              </div>
               {/* dex tool */}
               <div>
                 {askAmount
-                  ? formatUnits(askAmount * tickAmount, "ether")
+                  ? formatUnits(askAmount || 0 * tickAmount, "ether")
                   : "0.00"}{" "}
                 Matic
               </div>
