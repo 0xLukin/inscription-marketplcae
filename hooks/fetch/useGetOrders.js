@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react"
-import { useApiClient } from "../apiClient"
 
 function useGetOrders(url) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const { apiClient } = useApiClient()
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiClient(`/api/orders`)
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_HOST}/api/orders`
+        )
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }
